@@ -1,0 +1,25 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <form action="" method = "post">
+    {%csrf_token%}
+    {%for question in questions%}
+    <p>{{question.question}} </p>
+    {%for answer in question.questions.all%}
+        
+        <input type="radio" name = "{{question.question}}-{{question.id}}" value ="{{answer.answer}}">
+        <label for="">{{answer.answer}}</label>
+        <br>
+    {%endfor%}
+
+    
+    {%endfor%}
+
+    <button>submit</button>
+   </form>
+</body>
+</html>
