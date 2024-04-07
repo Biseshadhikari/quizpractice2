@@ -9,6 +9,14 @@
     
     {%for quiz in quizes%}
     <a href="{%url 'quizview' quiz.id%}">{{quiz.title}}</a>
+    <form action="" method="post">
+        {%csrf_token%}
+        <button name = "bookmark" value = "{{quiz.id}}">
+            bookmark
+        </button>
+    </form>
+    
+    <br>
     <br>
     {%endfor%}
 </body>

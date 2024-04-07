@@ -11,7 +11,7 @@
     <p>{{question.question}} </p>
     {%for answer in question.questions.all%}
         
-        <input type="radio" name = "{{question.question}}-{{question.id}}" value ="{{answer.answer}}">
+        <input type="radio" name = "{{question.id}}" value ="{{answer.answer}}">
         <label for="">{{answer.answer}}</label>
         <br>
     {%endfor%}

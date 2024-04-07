@@ -4,3 +4,4 @@ from .models import *
 admin.site.register(Quiz)
 admin.site.register(Questions)
 admin.site.register(Answers)
+admin.site.register(Bookmark)
