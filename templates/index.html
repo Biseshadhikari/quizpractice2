@@ -4,20 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Additional CSS styling can be added here */
+        .card {
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
-    
-    {%for quiz in quizes%}
-    <a href="{%url 'quizview' quiz.id%}">{{quiz.title}}</a>
-    <form action="" method="post">
-        {%csrf_token%}
-        <button name = "bookmark" value = "{{quiz.id}}">
-            bookmark
-        </button>
-    </form>
-    
-    <br>
-    <br>
-    {%endfor%}
+    <div class="container">
+        {% if messages %}
+            <div class="container">
+                
+                <div class="alert alert-dismissible {% if messages.tags %} alert-{{ messages.tags }}{% endif %}">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <ul class="list-unstyled mb-0">
+                        {% for message in messages %}
+                        <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            {% endif %}
+
+        
+        {% for quiz in quizes %}
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ quiz.title }}</h5>
+                <p class="card-text">Description: {{ quiz.description }}</p>
+                <!-- You can add more details here if needed -->
+                <a href="{% url 'quizview' quiz.id %}" class="btn btn-primary">Start Quiz</a>
+                <form action="" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" name="bookmark" value="{{ quiz.id }}" class="btn btn-outline-secondary">
+                        Bookmark
+                    </button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Bootstrap JS (optional) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
